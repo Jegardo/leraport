@@ -1,0 +1,29 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+	{% if title %}
+		{{ title }} - Leraport
+	{% else %}
+		Welcome to Leraport
+	{% endif %}
+{% endblock %}
+
+{% block navbar %}
+	<nav class="navbar navbar-light" style="background-color: #ffdc42;">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href=
+				"{{ url_for('photos.index') }} " >Leraport </a>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+    <b>Dabadoum!</b>
+{% endblock %}
