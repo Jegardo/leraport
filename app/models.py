@@ -9,6 +9,7 @@ class Photo(db.Model):
     title = db.Column(db.String(64), index=True, unique=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     album = db.Column(db.String(64), index=True, unique=True)
+    img_url = db.Column(db.String(420), index=True, unique=True)
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)

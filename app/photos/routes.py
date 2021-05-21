@@ -1,4 +1,5 @@
 from flask import render_template
+from flask import current_app
 from app.photos import bp
 from app.bloba import get_img_url
 
