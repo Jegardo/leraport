@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from azure.storage.blob import BlobServiceClient, ContainerClient, generate_blob_sas, ContainerSasPermissions
 from flask import current_app
-import os
 
 
 def get_containers():
@@ -44,5 +43,10 @@ def get_img_url(blob_name, container_name):
         account_key=account_key,
         permission=ContainerSasPermissions(read=True),
         expiry=datetime.utcnow() + timedelta(hours=1))
-    blob_url = f'https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}?{blob_sas_token}'
+
+    blob_url = []
+
+    blob_url[0] = f'https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}'
+    blob_url[1] = f'https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}?{blob_sas_token}'
+
     return blob_url
