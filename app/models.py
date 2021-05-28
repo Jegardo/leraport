@@ -1,6 +1,6 @@
 from app import db
 from datetime import datetime, timedelta
-from azure.storage.blob import generate_container_sas, ContainerSasPermissions
+from app.bloba import get_containers, get_img_names, get_img_url
 from time import time
 
 

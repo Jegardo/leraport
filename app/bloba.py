@@ -1,6 +1,37 @@
 from datetime import datetime, timedelta
-from azure.storage.blob import generate_blob_sas, ContainerSasPermissions
+from azure.storage.blob import BlobServiceClient, ContainerClient, generate_blob_sas, ContainerSasPermissions
 from flask import current_app
+import os
+
+
+def get_containers():
+    conn_str = current_app.config['AZURE_STORAGE_CONNECTION_STRING']
+    blob_service_client = BlobServiceClient.from_connection_string(conn_str)
+
+    container_list = blob_service_client.list_containers()
+
+    albums = []
+
+    for album in container_list:
+        albums.append(album.name)
+
+    return albums
+
+
+def get_img_names(container_name):
+    conn_str = current_app.config['AZURE_STORAGE_CONNECTION_STRING']
+    blob_service_client = BlobServiceClient.from_connection_string(conn_str)
+
+    container_client = blob_service_client.get_container_client(container_name)
+
+    blob_list = container_client.list_blobs()
+
+    imgs = []
+
+    for img in blob_list:
+        imgs.append(img.name)
+
+    return imgs
 
 
 def get_img_url(blob_name, container_name):
