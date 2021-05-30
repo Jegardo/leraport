@@ -6,7 +6,7 @@ from app.bloba import get_img_url
 
 
 @bp.route('/')
-@bp.route('/index')
+@bp.route('/#')
 def index(img_url=None, names=None):
     img_names = Photo.query.group_by(
         Photo.album).with_entities(Photo.title).all()
@@ -19,4 +19,9 @@ def index(img_url=None, names=None):
         container = str(img_albums[i])[2:-3]
         img_url.append(get_img_url(blob, container))
 
-    return render_template('index.html', img_url=img_url, title='Home')
+    return render_template('base.html', img_url=img_url, title='Home')
+
+
+@bp.route('/#About')
+def about():
+    return render_template('about.html', title='About')
