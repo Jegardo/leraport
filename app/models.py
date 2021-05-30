@@ -9,7 +9,6 @@ class Photo(db.Model):
     title = db.Column(db.String(64), index=True, unique=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     album = db.Column(db.String(64), index=True,)
-    img_url = db.Column(db.String(420), index=True, unique=True)
 
     def __repr__(self):
         return '<Img {} from {}>'.format(self.title, self.album)
@@ -25,7 +24,6 @@ class Photo(db.Model):
                 if exists:
                     continue
 
-                url = get_img_url(img, album)
-                p = Photo(title=img, album=album, img_url=url[0])
+                p = Photo(title=img, album=album)
                 db.session.add(p)
                 db.session.commit()
