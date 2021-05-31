@@ -6,7 +6,7 @@ from app.bloba import get_img_url
 
 
 @bp.route('/')
-@bp.route('/#')
+@bp.route('/index')
 def index(img_url=None, names=None):
     img_names = Photo.query.group_by(
         Photo.album).with_entities(Photo.title).all()
@@ -22,6 +22,33 @@ def index(img_url=None, names=None):
     return render_template('base.html', img_url=img_url, title='Home')
 
 
-@bp.route('/#About')
+@bp.route('/about')
 def about():
-    return render_template('about.html', title='About')
+    img_names = Photo.query.group_by(
+        Photo.album).with_entities(Photo.title).all()
+    img_albums = Photo.query.group_by(
+        Photo.album).with_entities(Photo.album).all()
+    img_url = []
+
+    for i in range(len(img_albums)):
+        blob = str(img_names[i])[2:-3]
+        container = str(img_albums[i])[2:-3]
+        img_url.append(get_img_url(blob, container))
+
+    return render_template('about.html', img_url=img_url, title='About')
+
+
+@bp.route('/contact')
+def contact():
+    img_names = Photo.query.group_by(
+        Photo.album).with_entities(Photo.title).all()
+    img_albums = Photo.query.group_by(
+        Photo.album).with_entities(Photo.album).all()
+    img_url = []
+
+    for i in range(len(img_albums)):
+        blob = str(img_names[i])[2:-3]
+        container = str(img_albums[i])[2:-3]
+        img_url.append(get_img_url(blob, container))
+
+    return render_template('contact.html', img_url=img_url, title='Contact')

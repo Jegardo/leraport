@@ -3,14 +3,20 @@ jQuery(document).ready(function() {
     $('.dismiss, .overlay').on('click', function() {
         $('.sidebar').removeClass('active');
         $('.overlay').removeClass('active');
+        $('.about').css("width","100vw")
+        $('.about').css("left","0")
+        $('.contact').css("width","100vw")
+        $('.contact').css("left","0")
         $('.open-menu').show();
     });
  
     $('.open-menu').on('click', function(e) {
         e.preventDefault();
-        $('.sidebar').addClass('active');
-        $('.overlay').addClass('active');
-        $('.open-menu').hide();
+        $('.sidebar').toggleClass('active');
+        $('.overlay').toggleClass('active');
+        $('.about').toggleClass('split')
+        $('.contact').toggleClass('split')
+        $('.koubi').toggleClass('fa-bars fa-times')
         // close opened sub-menus
         $('.collapse.show').toggleClass('show');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');

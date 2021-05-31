@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', 
     filename='media-queries.css') }}">
@@ -35,26 +34,24 @@
     <nav class="sidebar">
  
         <!-- close sidebar menu -->
-        <div class="dismiss">
-            <i class="fas fa-arrow-left"></i>
-        </div>
+        
  
         <div class="logo">
-            <h3><a href="index.html">Bootstrap 4 Template with Sidebar Menu</a></h3>
+            <h3><br><br></h3>
         </div>
  
         <ul class="list-unstyled menu-elements">
             <li class="active">
-                <a class="scroll-link" href="#"><i class="fas fa-home"></i> Home</a>
+                <a class="scroll-link" href="{{ url_for('photos.index') }}"><i class="fas fa-home"></i> Home</a>
             </li>
             <li>
-                <a class="scroll-link" href="#section-2"><i class="fas fa-user"></i> About</a>
+                <a class="scroll-link about-link" href="{{ url_for('photos.about') }}"><i class="fas fa-user"></i> About</a>
             </li>
             <li>
                 <a class="scroll-link" href="#section-5"><i class="fas fa-camera"></i> Portfolio</a>
             </li>
             <li>
-                <a class="scroll-link" href="#section-6"><i class="fas fa-envelope"></i> Contact</a>
+                <a class="scroll-link" href="{{ url_for('photos.contact') }}"><i class="fas fa-envelope"></i> Contact</a>
             </li>
         </ul>
  
@@ -67,7 +64,7 @@
 
         <div class="content"></div>
             <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
-                <i class="fas fa-align-left"></i>
+                <i class="koubi fas fa-bars"></i>
             </a>
 
             {% for img in img_url %}
@@ -82,13 +79,7 @@
 
 {% block scripts %}
     {{ super() }}
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="assets/js/jquery.backstretch.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
