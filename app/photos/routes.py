@@ -13,13 +13,15 @@ def index(img_url=None, names=None):
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
+    albums = []
 
     for i in range(len(img_albums)):
         blob = str(img_names[i])[2:-3]
         container = str(img_albums[i])[2:-3]
         img_url.append(get_img_url(blob, container))
+        albums.append(container)
 
-    return render_template('base.html', img_url=img_url, title='Home')
+    return render_template('index.html', img_url=img_url, albums=albums, title='Home')
 
 
 @bp.route('/about')
@@ -29,26 +31,47 @@ def about():
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
+    albums = []
 
     for i in range(len(img_albums)):
         blob = str(img_names[i])[2:-3]
         container = str(img_albums[i])[2:-3]
         img_url.append(get_img_url(blob, container))
+        albums.append(container)
 
-    return render_template('about.html', img_url=img_url, title='About')
+    return render_template('about.html', img_url=img_url, albums=albums, title='About')
 
 
 @bp.route('/contact')
 def contact():
+
     img_names = Photo.query.group_by(
         Photo.album).with_entities(Photo.title).all()
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
+    albums = []
 
     for i in range(len(img_albums)):
         blob = str(img_names[i])[2:-3]
         container = str(img_albums[i])[2:-3]
         img_url.append(get_img_url(blob, container))
+        albums.append(container)
 
-    return render_template('contact.html', img_url=img_url, title='Contact')
+    return render_template('contact.html', img_url=img_url, albums=albums, title='Contact')
+
+
+@bp.route('/album/<album>')
+def album(album):
+    img_names = Photo.query.filter_by(
+        album=album).with_entities(Photo.title).all()
+    img_url = []
+    albums = []
+
+    for i in range(len(img_names)):
+        blob = str(img_names[i])[2:-3]
+        container = album
+        img_url.append(get_img_url(blob, container))
+        albums.append(container)
+
+    return render_template('album.html', img_url=img_url, albums=albums, title=album)

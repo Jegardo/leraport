@@ -27,8 +27,8 @@
 	{% endif %}
 {% endblock %}
 
-{% block body %}
-    {{ super() }}
+{% block content %}
+    
     <div class="wrapper">
  
     <!-- Sidebar -->
@@ -49,9 +49,6 @@
                 <a class="scroll-link about-link" href="{{ url_for('photos.about') }}"><i class="fas fa-user"></i> About</a>
             </li>
             <li>
-                <a class="scroll-link" href="#section-5"><i class="fas fa-camera"></i> Portfolio</a>
-            </li>
-            <li>
                 <a class="scroll-link" href="{{ url_for('photos.contact') }}"><i class="fas fa-envelope"></i> Contact</a>
             </li>
         </ul>
@@ -67,24 +64,7 @@
             <a class="btn btn-primary btn-customized open-menu" href="#" role="button">
                 <i class="koubi fas fa-bars"></i>
             </a>
-
-            {% for img in img_url %}
-                <div class="bg-image hover-overlay ripple">
-                    <img 
-                        src="{{ img }}" 
-                        class="img-fluid"
-                        style="width: 100%; height: 100vh" 
-                    />
-                    <a href="#">
-                        <div class="mask" 
-                            style="background-color: rgba(0, 0, 0, 0.2);">
-                            <div class="album-title">
-                                <h1 style="font-size: 4em;">Bouheso</h1>
-                            </div>
-                        </div>      
-                    </a>
-                </div>
-            {% endfor %}
+            {% block app_content %}{% endblock %}
         </div>
     </div>
 {% endblock %}
