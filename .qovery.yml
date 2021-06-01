@@ -1,0 +1,15 @@
+---
+application:
+  name: "leraport"
+  project: "leraport"
+  organization: "QoveryCommunity"
+databases:
+- type: "POSTGRESQL"
+  name: "leradb"
+  version: "11"
+routers:
+- name: "main-leraport"
+  routes:
+  - application_name: "leraport"
+    paths:
+    - "/*"
