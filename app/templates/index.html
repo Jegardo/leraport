@@ -8,11 +8,11 @@
                 class="img-fluid"
                 style="width: 100%; height: 100vh" 
             />
-            <a href="{{ url_for('photos.album', album=albums[loop.index]) }}">
+            <a href="{{ url_for('photos.album', album=albums[loop.index0]) }}">
     	        <div class="mask" 
                     style="background-color: rgba(0, 0, 0, 0.2);">
                     <div class="album-title">
-                        <h1 style="font-size: 4em;">Bouheso</h1>
+                        <h1 style="font-size: 4em;">{{ albums[loop.index0] }}</h1>
                     </div>
                 </div>      
             </a>
