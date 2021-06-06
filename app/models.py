@@ -15,6 +15,7 @@ class Photo(db.Model):
 
     def populate_db():
         containers = get_containers()
+        Photo.query.delete()
 
         for album in containers:
             blobs = get_img_names(album)

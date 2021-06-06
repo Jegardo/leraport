@@ -58,5 +58,13 @@ jQuery(document).ready(function() {
     {
         offset: '-5'
     });
- 
+    
+    $('a#test').on('click', function(e) {
+        e.preventDefault()
+        $.getJSON('/bg_proc',
+            function(data) {
+
+        });
+        return false;
+    });
 });

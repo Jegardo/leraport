@@ -75,3 +75,14 @@ def album(album):
         albums.append(container)
 
     return render_template('album.html', img_url=img_url, albums=albums, title=album)
+
+
+@bp.route('/test')
+def test():
+    return render_template('test.html')
+
+
+@bp.route('/bg_proc')
+def bg_proc():
+    Photo.populate_db()
+    return ("updated!")

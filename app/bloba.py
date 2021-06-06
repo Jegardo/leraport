@@ -47,3 +47,11 @@ def get_img_url(blob_name, container_name):
     blob_url = f'https://{account_name}.blob.core.windows.net/{container_name}/{blob_name}?{blob_sas_token}'
 
     return blob_url
+
+
+def get_last_update():
+    conn_str = current_app.config['AZURE_STORAGE_CONNECTION_STRING']
+    blob_service_client = BlobServiceClient.from_connection_string(conn_str)
+
+    account_info = blob_service_client.get_service_stats()
+    print('Using Storage SKU: {}'.format(account_info))
