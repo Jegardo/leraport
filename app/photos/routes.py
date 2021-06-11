@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, jsonify
 from flask import current_app
 from app.photos import bp
 from app.models import Photo
@@ -8,16 +8,17 @@ from app.bloba import get_img_url
 @bp.route('/')
 @bp.route('/index')
 def index(img_url=None, names=None):
-    img_names = Photo.query.group_by(
-        Photo.album).with_entities(Photo.title).all()
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
     albums = []
 
-    for i in range(len(img_albums)):
-        blob = str(img_names[i])[2:-3]
+    for i, album in enumerate(img_albums):
         container = str(img_albums[i])[2:-3]
+        img_names = Photo.query.filter(
+            Photo.album == container).with_entities(Photo.title).distinct()
+        blob = str(img_names[i])[2:-3]
+
         img_url.append(get_img_url(blob, container))
         albums.append(container)
 
@@ -26,16 +27,17 @@ def index(img_url=None, names=None):
 
 @bp.route('/about')
 def about():
-    img_names = Photo.query.group_by(
-        Photo.album).with_entities(Photo.title).all()
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
     albums = []
 
-    for i in range(len(img_albums)):
-        blob = str(img_names[i])[2:-3]
+    for i, album in enumerate(img_albums):
         container = str(img_albums[i])[2:-3]
+        img_names = Photo.query.filter(
+            Photo.album == container).with_entities(Photo.title).distinct()
+        blob = str(img_names[i])[2:-3]
+
         img_url.append(get_img_url(blob, container))
         albums.append(container)
 
@@ -45,16 +47,17 @@ def about():
 @bp.route('/contact')
 def contact():
 
-    img_names = Photo.query.group_by(
-        Photo.album).with_entities(Photo.title).all()
     img_albums = Photo.query.group_by(
         Photo.album).with_entities(Photo.album).all()
     img_url = []
     albums = []
 
-    for i in range(len(img_albums)):
-        blob = str(img_names[i])[2:-3]
+    for i, album in enumerate(img_albums):
         container = str(img_albums[i])[2:-3]
+        img_names = Photo.query.filter(
+            Photo.album == container).with_entities(Photo.title).distinct()
+        blob = str(img_names[i])[2:-3]
+
         img_url.append(get_img_url(blob, container))
         albums.append(container)
 
@@ -77,12 +80,7 @@ def album(album):
     return render_template('album.html', img_url=img_url, albums=albums, title=album)
 
 
-@bp.route('/test')
-def test():
-    return render_template('test.html')
-
-
 @bp.route('/bg_proc')
 def bg_proc():
     Photo.populate_db()
-    return ("updated!")
+    return jsonify(gallery="updated!")
