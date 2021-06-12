@@ -1,0 +1,11 @@
+---
+application:
+  name: "leraport"
+  project: "leraport"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-leraport"
+  routes:
+  - application_name: "leraport"
+    paths:
+    - "/*"
