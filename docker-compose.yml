@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: kavvadias/leraport
     ports:
       - 5000:5000
     volumes:

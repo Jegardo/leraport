@@ -1,6 +1,5 @@
 logs/
 *.pot
-.env
 .dockenv
 
 # Byte-compiled / optimized / DLL files
